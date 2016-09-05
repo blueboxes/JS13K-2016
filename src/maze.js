@@ -1,11 +1,11 @@
 class Maze{
    
-  build()
+  build(sz)
   {
-    this.sz = 20;
-    this.maze = this._create2DArray(this.sz);
+    this.sz = sz;
+    this.maze = this._create2DArray(sz);
     this._carvePassagesTo(0, 0, "N");
-    this.maze[this.sz-1][this.sz-1] = this.maze[this.sz-1][this.sz-1] & ~cmp.south;//make exit
+    this.maze[sz-1][sz-1] = this.maze[sz-1][sz-1] & ~cmp.south;//make exit
   }
 
   _carvePassagesTo(x, y, fromDirection){

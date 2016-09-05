@@ -1,6 +1,5 @@
- 
-const context = document.getElementById("canvas").getContext("2d");
-const g = new Game(context,
+
+const g = new Game(document.getElementById("canvas").getContext("2d"),
   (e)=>{
       if(e==gs.play){
         $("footer")[0].classList.remove("hdn");
@@ -11,7 +10,6 @@ const g = new Game(context,
       if(e==gs.pause){$("#pause")[0].classList.remove("hdn")}
       if(e==gs.win){
         $("#end")[0].classList.remove("hdn");
-        $("#tw")[0].href = "https://twitter.com/intent/tweet?text=I%20have%20just%20escaped%20maze%2013%20in%20" + encodeURIComponent($("#tm")[0].innerText) + "%20at%20" + encodeURIComponent(this.window.location.href) + "&hashtags=js13k,maze13&via=johnkilmister";
       }
     },
   (s,m,ms)=>
@@ -21,21 +19,26 @@ const g = new Game(context,
           $("#ms")[0].innerText  = ms; 
           $("#tm")[0].innerText = `${m}m ${s}s ${ms}ms`; 
       });
- 
+  
 $(".go").on("click", ()=>{
-  $("#starting")[0].classList.remove("hdn");
+  $("#lvl")[0].classList.remove("hdn");
   $("#start")[0].classList.add("hdn"); 
   $("#end")[0].classList.add("hdn");
+});
+
+$(".lvl").on("click", (e)=>{
+  let lvl = e.target.dataset.mz;
+  $("#starting")[0].classList.remove("hdn");
+  $("#lvl")[0].classList.add("hdn"); 
   var e = $("#starting p")[0];
   e.classList.add("cd");
   e.innerText = 3;
   e.on("animationstart", e => {e.target.innerHTML=3});
   e.on("animationiteration", e => {e.target.innerHTML=3-Math.abs(e.elapsedTime)});
-  e.on("animationend", e => {g.start()});
+  e.on("animationend", e => {g.start(lvl); resizeCanvas()});
 });
 $("#mte")[0].on("click", ()=>{g.mute()});
-$(".tri").on("mousedown", (e)=>{e.preventDefault();g.keys[parseInt(e.target.dataset.key)]=true});
-$(".tri").on("mouseup", (e)=>{e.preventDefault();g.keys[parseInt(e.target.dataset.key)]=false});
+$("#tw")[0].on("click", ()=>{this.window.location.href="https://twitter.com/intent/tweet?text=I%20have%20just%20escaped%20maze%2013%20in%20" + encodeURIComponent($("#tm")[0].innerText) + "%20at%20" + encodeURIComponent(this.window.location.href) + "&hashtags=js13k,maze13&via=johnkilmister"});
  $("#canvas").on("click", (e)=>{g.aim(e.clientX,e.clientY)});
 document.onkeydown = (e) =>{g.keys[e.keyCode]=true;}
 document.onkeyup = (e) =>{g.keys[e.keyCode]=null;}
@@ -50,10 +53,12 @@ document.onkeyup = (e) =>{g.keys[e.keyCode]=null;}
   
   main(); 
 })();
+ 
 
-function resizeCanvas(){
-    let c = $("#canvas")[0];
-    let m = $("main")[0];
-    c.width  = m.offsetWidth-30;
-    c.height  = m.offsetHeight-30;   
-}
+ function resizeCanvas()
+ {
+    let m = $("main")[0],
+    maxW =  m.offsetWidth-30,
+    maxH = m.offsetHeight-30;
+    g.resize($("canvas")[0],maxW,maxH)
+ }

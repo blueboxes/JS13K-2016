@@ -34,22 +34,30 @@
       return this._gState;
     }
  
-    start()
+    start(mzSize)
     {
       this.maze = new Maze();
-      this.maze.build();
+      this.maze.build(mzSize);
       this.player = new Player();
 
 
+    
       this.glitches = [];
      /*for(let i = 0;i<10;i++){
         this.glitches.push(new Glitch());
       }
       */
        this.offSetY = 0;
-        this.offSetX = 0;
+      this.offSetX = 0;
       this.state = gs.play;   
       
+    }
+
+    resize(c,maxW,maxH)
+    {
+      let sz = this.maze.sz;
+      c.width = Math.min(maxW,30+sz*40);
+      c.height = Math.min(maxH,30+sz*40);
     }
 
     aim(x,y){
