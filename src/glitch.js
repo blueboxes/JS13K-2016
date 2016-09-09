@@ -1,8 +1,8 @@
 class Glitch {
 
-  constructor() {
-    this.x = Util.rand(1, 20) * 40;
-    this.y = Util.rand(1, 20) * 40;
+  constructor(max) {
+    this.x = Util.rand(1, max) * 40;
+    this.y = Util.rand(1, max) * 40;
     this.r = 0;//radius
     this.g = 0.2;
     this.isDead=false;
@@ -10,7 +10,7 @@ class Glitch {
   }
 
   update(p) {
-    this.r += this.r > 10 ? -8 : 0.15;
+    if(Util.rand(1, 100)%10){this.r = Util.rand(1, 40);this.flip=Util.rand(1, 10)};
  
     if ((!this.isHit) && (p.x < this.x + cell &&  p.x + cell > this.x &&  p.y < this.y + cell && cell + p.y > this.y)) {
         this._gen();
@@ -55,20 +55,15 @@ class Glitch {
     this.h = c.canvas.height;
 
     if(this.isDead)
-    {
       return;
-    }
 
     c.save();
-    c.translate(this.x + 20, this.y + 20);
-  
- 		c.lineWidth = 5;
- 		c.beginPath();
-    c.arc(0, 0, this.r, 0 * Math.PI, 2 * Math.PI, false);
+    c.translate(this.x, this.y);
+
+    if(this.flip%2==0){c.moveTo(0, this.r);c.lineTo(40, this.r);}else{c.moveTo(this.r, 0);c.lineTo(this.r, 40);}
+
     c.strokeStyle = "#6f6";
     c.stroke();
- 
-
     c.restore();
   
       if (this.isHit && this.lines) {
