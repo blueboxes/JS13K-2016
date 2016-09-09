@@ -39,14 +39,12 @@
       this.maze = new Maze();
       this.maze.build(mzSize);
       this.player = new Player();
-
-
-    
+ 
       this.glitches = [];
-     /*for(let i = 0;i<10;i++){
-        this.glitches.push(new Glitch());
+      for(let i = 0;i<mzSize;i++){
+        this.glitches.push(new Glitch(mzSize));
       }
-      */
+      
        this.offSetY = 0;
       this.offSetX = 0;
       this.state = gs.play;   
@@ -55,9 +53,11 @@
 
     resize(c,maxW,maxH)
     {
-      let sz = this.maze.sz;
-      c.width = Math.min(maxW,30+sz*40);
-      c.height = Math.min(maxH,30+sz*40);
+      if(this.maze){
+        let sz = this.maze.sz;
+        c.width = Math.min(maxW,30+sz*40);
+        c.height = Math.min(maxH,30+sz*40);
+      }
     }
 
     aim(x,y){
@@ -80,7 +80,7 @@
  
       this.glitches.forEach((g)=>{
         g.update(this.player);
-        if(g.isDead) this.maze.build();
+        if(g.isDead) this.maze.build(this.maze.sz);
       });
 
       this.glitches = this.glitches.filter((g)=>{return !g.isDead}); 
