@@ -13,15 +13,16 @@ hasWon(mz)
     return cellX == max && cellY == max;
 }
 
+//canvas, mouse x,y,offsetX,Y
 aim(c,x,y,oX,oY){
-  //todo fix issue with offset
+ 
     let r = canvas.getBoundingClientRect(),
-     xDif = (this.x+20)-(x - r.left),
-     yDif = (this.y+20)-(y - r.top);
+     xDif = ((this.x-oX)+20)-(x - r.left),
+     yDif = ((this.y-oY)+20)-(y - r.top);
 
     this.target = (Math.abs(yDif) > Math.abs(xDif)) ? Math.abs(yDif) == yDif ? cmp.north : cmp.south :  Math.abs(xDif) == xDif ? cmp.west : cmp.east;
-    this.tx = (x - r.left);
-    this.ty = (y - r.top);
+    this.tx = oX + (x - (r.left));
+    this.ty = oY + (y - (r.top));
 
 }
  
