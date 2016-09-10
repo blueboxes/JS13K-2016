@@ -10,6 +10,7 @@ const g = new Game(document.getElementById("canvas").getContext("2d"),
       if(e==gs.pause){$("#pause")[0].classList.remove("hdn")}
       if(e==gs.win){
         $("#end")[0].classList.remove("hdn");
+        $("#toptm")[0].innerHTML = Score.top(g.maze.sz);
       }
     },
   (s,m,ms)=>
@@ -24,6 +25,12 @@ $(".go").on("click", ()=>{
   $("#lvl")[0].classList.remove("hdn");
   $("#start")[0].classList.add("hdn"); 
   $("#end")[0].classList.add("hdn");
+  Snd.start();
+});
+
+$(".snd").on("click", (e)=>{
+  Snd.tglMute();
+  e.target.classList.toggle('snd-off');
 });
 
 $(".lvl").on("click", (e)=>{
@@ -31,11 +38,12 @@ $(".lvl").on("click", (e)=>{
   $("#starting")[0].classList.remove("hdn");
   $("#lvl")[0].classList.add("hdn"); 
   var e = $("#starting p")[0];
+  Snd.start();
   e.classList.add("cd");
   e.innerText = 3;
-  e.on("animationstart", e => {e.target.innerHTML=3});
-  e.on("animationiteration", e => {e.target.innerHTML=3-Math.abs(e.elapsedTime)});
-  e.on("animationend", e => {g.start(lvl); resizeCanvas()});
+  e.on("animationstart", e => {e.target.innerHTML=3;Snd.start()});
+  e.on("animationiteration", e => {e.target.innerHTML=3-Math.abs(e.elapsedTime);Snd.start()});
+  e.on("animationend", e => {g.start(lvl);Snd.enter(); resizeCanvas()});
 });
 $("#mte")[0].on("click", ()=>{g.mute()});
 $("#tw")[0].on("click", ()=>{this.window.location.href="https://twitter.com/intent/tweet?text=I%20have%20just%20escaped%20maze%2013%20in%20" + encodeURIComponent($("#tm")[0].innerText) + "%20at%20" + encodeURIComponent(this.window.location.href) + "&hashtags=js13k,maze13&via=johnkilmister"});

@@ -14,6 +14,7 @@ class Glitch {
  
     if ((!this.isHit) && (p.x < this.x + cell &&  p.x + cell > this.x &&  p.y < this.y + cell && cell + p.y > this.y)) {
         this._gen();
+         Snd.glitch();
         let gi = setInterval(() => {
              setTimeout(() => { this._gen() }, Util.rand(250, 1000));
         }, 500);

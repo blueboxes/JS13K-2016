@@ -86,42 +86,25 @@ p{
   }
 }
 
-/*
-.tri{
-  width: 0; 
-  height: 0; 
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent; 
-  border-right: 10px solid #51a951;
-  float:left;
-  margin:2px;
+.snd{
+    float: left;
+    background: #6f6;
+    border-radius: 20px;
+    width: 25px;
+    height: 25px;
 }
 
- 
-.trir
-{
-  transform: rotate(180deg); 
-  float:right;
-}
- 
-.barx
-{
-   transform:translate(0px,0px)
+.snd:before{
+  content: "\1F50A";
 }
 
-.bary
-{
-   transform:translate(0px, 25px) rotate(90deg)
+.snd-off{
+  opacity: 0.4;
 }
 
-.bar 
-{
-   width:75px;
-   height:25px;
-   background-color:#357435;
-   border-radius:4px;
+.snd-off:before{
+    content: "\1F508";
 }
-*/
 
 .hdn{display:none}
 

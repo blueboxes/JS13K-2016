@@ -92,7 +92,7 @@ aim(c,x,y,oX,oY){
        }
 
        this.target = cmp.none;
-
+      Snd.hit();
        return;
       }
     } 

@@ -25,6 +25,8 @@
       if(s==gs.win)
       {
         this.eTime = Date.now();
+        Snd.end();
+        Score.set(this.maze.sz, this.eTime-this.sTime)
       }
 
       this.stateChange(s);

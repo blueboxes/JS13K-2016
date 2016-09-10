@@ -12,7 +12,7 @@ gulp.task('default', ['build']);
 gulp.task('build', ['build_source','build_index', 'build_styles','compress']);
  
 gulp.task('build_source',['clean'], () => {
-  return gulp.src(['src/utils.js', 'src/glitch.js','src/maze.js','src/player.js','src/game.js','src/ui.js',])
+  return gulp.src(['src/utils.js','src/sound.js','src/scoreBoard.js','src/glitch.js','src/maze.js','src/player.js','src/game.js','src/ui.js',])
    .pipe(concat('game.min.js'))
    //.pipe(babel({presets: ['babili']}))
    .pipe(gulp.dest('build'))
