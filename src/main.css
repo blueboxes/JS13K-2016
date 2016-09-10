@@ -58,13 +58,10 @@ p{
   margin: auto;
 }
 
-.sm
-{
-  font-size:18px;
-}
-.lg{
-  font-size:30px;
-}
+ .pb{
+   display: block;
+  font-size: 14px;
+  }
 
 .cd {
   animation-duration: 1s;
@@ -86,13 +83,23 @@ p{
   }
 }
 
-.snd{
-    float: left;
+.snd, .quit{
     background: #6f6;
     border-radius: 20px;
     width: 25px;
     height: 25px;
 }
+.snd{
+    float: left;
+    
+}
+
+.quit{
+    float:right;
+    color: gray;
+}
+ 
+
 
 .snd:before{
   content: "\1F50A";

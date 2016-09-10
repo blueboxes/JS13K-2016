@@ -1,5 +1,5 @@
 # Escape From Maze 13
-Created by John Kilmister for js13kGames
+Created by John Kilmister for js13kGames. One of the aims was to see how far in september 2016 browsers support ES6 with out any polyfils or transpilation. Therefore in 2016 this game runs on only the latest browsers.
  
 #### Controls 
 Use arrow keys or tap/click on the maze to move the player around.
@@ -12,12 +12,18 @@ This entry uses non transpiled ES6, CSS3 animations and flexbox so will only wor
 
 ### Features
 * Random maze generation at 3 sizes chosen by the player
-* Glitch tiles
+* Glitch tiles that mix up the maze
 * Scrollable maze for small screens
 * Timed runs
-* Top scores stored - *todo*
+* Top scores stored and shown per maze size
 * Share score on twitter
-* Sound effects - *todo*
-* Collect and unlock keys to find shortcuts - *todo*
+* Sound effects  
+* Mute sounds
+* Quit back to level screen
+  
 
-
+### With Thanks
+I would like to extend my thanks to...
+* Andrzej Mazur for running JS13K Games
+* JFSXR and as3sfxr for the sounds - https://github.com/mneubrand/jsfxr
+* @moklick for the basis of the glitch code - https://codepen.io/moklick/pen/DxHCm

@@ -7,10 +7,10 @@ const g = new Game(document.getElementById("canvas").getContext("2d"),
         $("#mz")[0].classList.remove("hdn");
         resizeCanvas()
       }
-      if(e==gs.pause){$("#pause")[0].classList.remove("hdn")}
       if(e==gs.win){
+        $("footer")[0].classList.add("hdn");
         $("#end")[0].classList.remove("hdn");
-        $("#toptm")[0].innerHTML = Score.top(g.maze.sz);
+        $("#toptm")[0].innerHTML = "Your Best Time: " + Score.top(g.maze.sz);
       }
     },
   (s,m,ms)=>
@@ -20,12 +20,25 @@ const g = new Game(document.getElementById("canvas").getContext("2d"),
           $("#ms")[0].innerText  = ms; 
           $("#tm")[0].innerText = `${m}m ${s}s ${ms}ms`; 
       });
-  
-$(".go").on("click", ()=>{
-  $("#lvl")[0].classList.remove("hdn");
+
+lvlSelect = () => {
+    $("#lvl")[0].classList.remove("hdn");
+  $(".pb-sm")[0].innerText = Score.top(10);
+  $(".pb-rg")[0].innerText = Score.top(15);
+  $(".pb-lg")[0].innerText = Score.top(20);
   $("#start")[0].classList.add("hdn"); 
   $("#end")[0].classList.add("hdn");
   Snd.start();
+}
+
+$(".quit").on("click", ()=>{
+   g.quit();
+   $("footer")[0].classList.add("hdn");
+   lvlSelect();
+});
+
+$(".go").on("click", ()=>{
+  lvlSelect();
 });
 
 $(".snd").on("click", (e)=>{
@@ -45,7 +58,6 @@ $(".lvl").on("click", (e)=>{
   e.on("animationiteration", e => {e.target.innerHTML=3-Math.abs(e.elapsedTime);Snd.start()});
   e.on("animationend", e => {g.start(lvl);Snd.enter(); resizeCanvas()});
 });
-$("#mte")[0].on("click", ()=>{g.mute()});
 $("#tw")[0].on("click", ()=>{this.window.location.href="https://twitter.com/intent/tweet?text=I%20have%20just%20escaped%20maze%2013%20in%20" + encodeURIComponent($("#tm")[0].innerText) + "%20at%20" + encodeURIComponent(this.window.location.href) + "&hashtags=js13k,maze13&via=johnkilmister"});
  $("#canvas").on("click", (e)=>{g.aim(e.clientX,e.clientY)});
 document.onkeydown = (e) =>{g.keys[e.keyCode]=true;}

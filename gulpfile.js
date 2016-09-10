@@ -6,15 +6,15 @@ htmlmin = require('gulp-htmlmin'),
 rimraf = require('gulp-rimraf'),
 size = require('gulp-size'),
 minifier = require('gulp-uglify/minifier'),
-babel = require('gulp-babel');
+webserver = require('gulp-webserver');
+  
 
 gulp.task('default', ['build']);
-gulp.task('build', ['build_source','build_index', 'build_styles','compress']);
+gulp.task('build', ['build_source','build_index', 'build_styles','compress','webserver']);
  
 gulp.task('build_source',['clean'], () => {
   return gulp.src(['src/utils.js','src/sound.js','src/scoreBoard.js','src/glitch.js','src/maze.js','src/player.js','src/game.js','src/ui.js',])
    .pipe(concat('game.min.js'))
-   //.pipe(babel({presets: ['babili']}))
    .pipe(gulp.dest('build'))
 })
 
@@ -44,9 +44,19 @@ gulp.task('clean', function () {
     return gulp.src('build/*.*', {read: false})
           .pipe(rimraf());
 });
- 
+
+/*Needed as cookies used in scoreboard cannot be saved from a file:// address */ 
+gulp.task('webserver', function() {
+  gulp.src('build')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: false,
+      open: true
+    }));
+});
+
 gulp.task('watch', function() {
-  gulp.watch('src/*.js', ['lint', 'build_source']);
-  gulp.watch('src/styles.css', ['build_styles']);
+  gulp.watch('src/*.js', ['build_source']);
+  gulp.watch('src/main.css', ['build_styles']);
   gulp.watch('src/index.html', ['build_index']);
 });

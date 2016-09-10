@@ -28,6 +28,10 @@
         Snd.end();
         Score.set(this.maze.sz, this.eTime-this.sTime)
       }
+       if(s==gs.start)
+       {
+          this.eTime = Date.now();
+       }
 
       this.stateChange(s);
     }
@@ -36,6 +40,10 @@
       return this._gState;
     }
  
+    quit(){
+      this.state = gs.start;
+    }
+
     start(mzSize)
     {
       this.maze = new Maze();
@@ -65,12 +73,7 @@
     aim(x,y){
       this.player.aim(this.ctx.canvas,x,y,this.offSetX,this.offSetY);
     }
-   
-    mute()
-    {
-
-    }
-
+    
     update()
     {
       if(this.state!=gs.play) return;
@@ -88,7 +91,7 @@
       this.glitches = this.glitches.filter((g)=>{return !g.isDead}); 
 
       //update timer 
-      let t = (this.endTime ? this.eTime : Date.now()) -  this.sTime;
+      let t = (this.eTime ? this.eTime : Date.now()) -  this.sTime;
       let s =  Math.floor((t/1000) % 60);
       let m = Math.floor((t/1000/60) % 60 );
       let ms =  ('0'+Math.floor(t%60)).slice(-2);
@@ -101,7 +104,7 @@
 
       if(cWidth < mSize)
       {
-            this.offSetX = this.player.x > 80 ? Math.min(this.player.x - 80,(mSize-cWidth)+10) : 0;
+         this.offSetX = this.player.x > 80 ? Math.min(this.player.x - 80,(mSize-cWidth)+10) : 0;
       }
 
       if(cHeight < mSize)

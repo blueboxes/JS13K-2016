@@ -19,16 +19,13 @@
   "dependencies": {
     "babel-preset-babili": "0.0.2",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-htmlmin": "^2.0.0",
     "gulp-rimraf": "^0.2.0",
     "gulp-size": "^2.1.0",
     "gulp-uglify": "^2.0.0",
-    "gulp-zip": "^3.2.0",
-    "pump": "^1.0.1",
-    "uglify-js": "^2.7.3",
-    "uglify-js-harmony": "^2.6.2"
+    "gulp-webserver": "^0.9.1",
+    "gulp-zip": "^3.2.0"
   }
 }
