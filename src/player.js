@@ -35,7 +35,7 @@ aim(c,x,y,oX,oY){
       return;
     }
 
-    let cellX = Math.trunc(this.x/40), cellY = Math.trunc(this.y/40), vx = 0, vy = 0, h = 0, w = 0, wall = 0, owall = 0,s = 5; 
+    let cellX = Math.trunc(this.x/40), cellY = Math.trunc(this.y/40), vx = 0, vy = 0, h = 0, w = 0, wall = 0, owall = 0,s = 3; 
 
     if(keys[37] || this.target == cmp.west){
         vx -=s;
