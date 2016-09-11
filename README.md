@@ -27,3 +27,4 @@ I would like to extend my thanks to...
 * Andrzej Mazur for running JS13K Games
 * JFSXR and as3sfxr for the sounds - https://github.com/mneubrand/jsfxr
 * @moklick for the basis of the glitch code - https://codepen.io/moklick/pen/DxHCm
+* Jack Rugile for the inspiring the design - https://codepen.io/jackrugile/pen/bjuCf
